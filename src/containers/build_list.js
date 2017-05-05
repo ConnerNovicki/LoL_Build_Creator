@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setCurrentActiveBuild } from '../actions/index';
 import '../../style/build_list.css';
 
 class BuildList extends Component {
@@ -28,20 +30,28 @@ class BuildList extends Component {
     const champUrl = build.champion.imgUrl;
     const champKey = build.champion.id;
     return (
-      <div key={champKey} >
-        <img
-          src={champUrl}
-          alt={champName} />
-        {build.items.map(this.renderItem)}
-      </div>
+      <tr key={champKey} onClick={() => this.props.setCurrentActiveBuild(build)}>
+        <td>
+          <img
+            src={champUrl}
+            alt={champName} />
+          {build.items.map(this.renderItem)}
+        </td>
+      </tr>
     );
   }
 
   render() {
     return (
       <div>
-        <h1>Saved Builds:</h1>
-        {this.props.builds.map(this.renderBuild)}
+        <table className="table table-hover">
+          <thead>
+            <tr><td><h1>Saved Builds:</h1></td></tr>
+          </thead>
+          <tbody>
+            {this.props.builds.map(this.renderBuild)}
+          </tbody>
+        </table>
       </div>
     );
   }
@@ -51,10 +61,10 @@ function mapStateToProps({ builds }) {
   return { builds: builds.builds };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//
-//    }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    setCurrentActiveBuild
+   }, dispatch);
+}
 
-export default connect(mapStateToProps)(BuildList);
+export default connect(mapStateToProps, mapDispatchToProps)(BuildList);

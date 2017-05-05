@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-// Visibility filter types
-export const CHAMPION_FILTER = 'CHAMPION_FILTER';
-export const ITEM_FILTER = 'ITEM_FILTER';
-export const NO_FILTER = 'NO_FILTTER';
-
 export const FETCH_CHAMP_DATA = 'FETCH_CHAMP_DATA';
 export const FETCH_ITEM_DATA = 'FETCH_ITEM_DATA';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
@@ -13,6 +8,7 @@ export const ADD_ITEM_TO_CURRENT_BUILD = 'ADD_ITEM_TO_CURRENT_BUILD';
 export const REMOVE_ITEM_FROM_CURRENT_BUILD = 'REMOVE_ITEM_FROM_CURRENT_BUILD';
 export const SAVE_BUILD = 'SAVE_BUILD';
 export const CLEAR_CURRENT_BUILD = 'CLEAR_CURRENT_BUILD';
+export const  SET_CURRENT_ACTIVE_BUILD = ' SET_CURRENT_ACTIVE_BUILD';
 
 const API_KEY = 'RGAPI-4fe23761-e8c8-47fb-8d81-f6d669f8f3d1';
 const CHAMP_URL = 'https://global.api.riotgames.com/api/lol/static-data/NA/v1.2/champion?champData=all';
@@ -78,5 +74,12 @@ export function saveBuild() {
 export function clearCurrentBuild() {
   return {
     type: CLEAR_CURRENT_BUILD
+  }
+}
+
+export function setCurrentActiveBuild(build) {
+  return {
+    type: SET_CURRENT_ACTIVE_BUILD,
+    payload: build
   }
 }

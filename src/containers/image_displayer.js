@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchChampData, fetchItemData, setCurrentBuildChamp, addItemToCurrentBuild } from '../actions/index';
-import { CHAMPION_FILTER, ITEM_FILTER, NO_FILTER } from '../actions/index';
+import { CHAMPION_FILTER, ITEM_FILTER, NO_FILTER } from '../actions/visibility_filters';
 import '../../style/image_displayer.css';
 
 class ImageDisplayer extends Component {

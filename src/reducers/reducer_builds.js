@@ -1,4 +1,7 @@
-import { SET_CURRENT_BUILD_CHAMP, ADD_ITEM_TO_CURRENT_BUILD, REMOVE_ITEM_FROM_CURRENT_BUILD, SAVE_BUILD, CLEAR_CURRENT_BUILD } from '../actions/index';
+import _ from 'lodash';
+import { SET_CURRENT_BUILD_CHAMP, ADD_ITEM_TO_CURRENT_BUILD,
+         REMOVE_ITEM_FROM_CURRENT_BUILD, SAVE_BUILD, CLEAR_CURRENT_BUILD,
+         SET_CURRENT_ACTIVE_BUILD } from '../actions/index';
 
 const defaultState = {
   currentBuild: {
@@ -37,6 +40,9 @@ export default function BuildsReducer(state = defaultState, action) {
       });
 
     case SAVE_BUILD:
+      // Don't add current build to state if it has either no champ or no items defined
+      if (_.isEmpty(state.currentBuild.champion) && state.currentBuild.items.length === 0) return state;
+
       return Object.assign({}, state, {
         builds: [ ...state.builds, state.currentBuild ]
       });
@@ -48,6 +54,11 @@ export default function BuildsReducer(state = defaultState, action) {
           items: []
         }
       });
+
+      case SET_CURRENT_ACTIVE_BUILD:
+        return Object.assign({}, state, {
+          currentBuild: action.payload
+        });
 
     default:
       return state;

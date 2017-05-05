@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setVisibilityFilter, saveBuild, clearCurrentBuild, CHAMPION_FILTER, ITEM_FILTER, NO_FILTER } from '../actions/index';
+import { setVisibilityFilter, saveBuild, clearCurrentBuild } from '../actions/index';
+import { CHAMPION_FILTER, ITEM_FILTER, NO_FILTER } from '../actions/visibility_filters';
 
 class FilterSelector extends Component {
   constructor(props) {
