@@ -1,52 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setCurrentActiveBuild } from '../actions/index';
+import { setCurrentActiveBuild, removeBuildFromList } from '../actions/index';
 import '../../style/build_list.css';
+
+import BuildListItem from '../components/build_list_item';
 
 class BuildList extends Component {
   constructor(props) {
     super(props);
 
     this.renderBuild = this.renderBuild.bind(this);
-    this.renderItem = this.renderItem.bind(this);
-  }
-
-  renderItem(item) {
-    const itemName = item.name;
-    const itemUrl = item.imgUrl;
-    const itemKey = item.id;
-    return (
-      <div className="item-div" key={itemKey}>
-        <img
-          src={itemUrl}
-          alt={itemName} />
-      </div>
-    );
   }
 
   renderBuild(build) {
-    const champName = build.champion.name;
-    const champUrl = build.champion.imgUrl;
-    const champKey = build.champion.id;
-    return (
-      <tr key={champKey} onClick={() => this.props.setCurrentActiveBuild(build)}>
-        <td>
-          <img
-            src={champUrl}
-            alt={champName} />
-          {build.items.map(this.renderItem)}
-        </td>
-      </tr>
-    );
+    const names = build.items.map((item) => item.name);
+    names.join(' + ');
+    const key = build.champion.id + names;
+
+    return <BuildListItem
+            build={build}
+            setCurrentActiveBuild={this.props.setCurrentActiveBuild}
+            removeBuildFromList={this.props.removeBuildFromList}
+            key={key} />;
   }
 
   render() {
+    if (this.props.builds.length === 0) return <div></div>;
+
     return (
       <div>
+        <h1>Saved Builds:</h1>
         <table className="table table-hover">
           <thead>
-            <tr><td><h1>Saved Builds:</h1></td></tr>
+            <tr>
+              <td>Chamion</td>
+              <td>Items</td>
+            </tr>
           </thead>
           <tbody>
             {this.props.builds.map(this.renderBuild)}
@@ -63,7 +53,8 @@ function mapStateToProps({ builds }) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    setCurrentActiveBuild
+    setCurrentActiveBuild,
+    removeBuildFromList
    }, dispatch);
 }
 

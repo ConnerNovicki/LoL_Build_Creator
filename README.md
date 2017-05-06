@@ -4,6 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project fetches data from the Riot Games API. It uses both ReactJS and Redux.
 
+This project uses the following dependencies:
+- ReactJS
+- Redux
+- Lodash
+- Axios
+
 To install and run, simply run the following commands:
 
 ```

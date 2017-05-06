@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { SET_CURRENT_BUILD_CHAMP, ADD_ITEM_TO_CURRENT_BUILD,
          REMOVE_ITEM_FROM_CURRENT_BUILD, SAVE_BUILD, CLEAR_CURRENT_BUILD,
-         SET_CURRENT_ACTIVE_BUILD } from '../actions/index';
+         SET_CURRENT_ACTIVE_BUILD, REMOVE_BUILD_FROM_LIST } from '../actions/index';
 
 const defaultState = {
   currentBuild: {
@@ -59,6 +59,14 @@ export default function BuildsReducer(state = defaultState, action) {
         return Object.assign({}, state, {
           currentBuild: action.payload
         });
+
+      case REMOVE_BUILD_FROM_LIST:
+        const newBuilds = _.remove(state.builds, (build) => {
+          return build !== action.payload;
+        });
+        return Object.assign({}, state, {
+          builds: newBuilds
+        })
 
     default:
       return state;

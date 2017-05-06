@@ -8,7 +8,8 @@ export const ADD_ITEM_TO_CURRENT_BUILD = 'ADD_ITEM_TO_CURRENT_BUILD';
 export const REMOVE_ITEM_FROM_CURRENT_BUILD = 'REMOVE_ITEM_FROM_CURRENT_BUILD';
 export const SAVE_BUILD = 'SAVE_BUILD';
 export const CLEAR_CURRENT_BUILD = 'CLEAR_CURRENT_BUILD';
-export const  SET_CURRENT_ACTIVE_BUILD = ' SET_CURRENT_ACTIVE_BUILD';
+export const SET_CURRENT_ACTIVE_BUILD = ' SET_CURRENT_ACTIVE_BUILD';
+export const REMOVE_BUILD_FROM_LIST = 'REMOVE_BUILD_FROM_LIST';
 
 const API_KEY = 'RGAPI-4fe23761-e8c8-47fb-8d81-f6d669f8f3d1';
 const CHAMP_URL = 'https://global.api.riotgames.com/api/lol/static-data/NA/v1.2/champion?champData=all';
@@ -80,6 +81,13 @@ export function clearCurrentBuild() {
 export function setCurrentActiveBuild(build) {
   return {
     type: SET_CURRENT_ACTIVE_BUILD,
+    payload: build
+  }
+}
+
+export function removeBuildFromList(build) {
+  return {
+    type: REMOVE_BUILD_FROM_LIST,
     payload: build
   }
 }
