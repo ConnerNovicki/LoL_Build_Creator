@@ -7,8 +7,8 @@ import BuildList from '../containers/build_list';
 const App = () => {
   return (
     <div>
-      <FilterSelector />
       <BuildPreview />
+      <FilterSelector />
       <ImageDisplayer />
       <BuildList />
     </div>

@@ -1,0 +1,10 @@
+.preview-div {
+  height: 200px;
+  text-align: center;
+  background: rgb(143, 143, 143);
+}
+
+.champ-img {
+  width: 100px;
+  padding-top: 50px;
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setVisibilityFilter, saveBuild, clearCurrentBuild } from '../actions/index';
+import { setVisibilityFilter, saveBuild, clearCurrentBuild, removeAllBuilds } from '../actions/index';
 import { CHAMPION_FILTER, ITEM_FILTER, NO_FILTER } from '../actions/visibility_filters';
 
 class FilterSelector extends Component {
@@ -10,10 +10,17 @@ class FilterSelector extends Component {
     super(props);
 
     this.clearBuild = this.clearBuild.bind(this);
+    this.removeAllBuilds = this.removeAllBuilds.bind(this);
     this.saveBuild = this.saveBuild.bind(this);
   }
 
   clearBuild() {
+    this.props.clearCurrentBuild();
+    this.props.setVisibilityFilter(NO_FILTER);
+  }
+
+  removeAllBuilds() {
+    this.props.removeAllBuilds();
     this.props.clearCurrentBuild();
     this.props.setVisibilityFilter(NO_FILTER);
   }
@@ -30,7 +37,8 @@ class FilterSelector extends Component {
         <button onClick={() => this.props.setVisibilityFilter(CHAMPION_FILTER)}>Select Champ</button>
         <button onClick={() => this.props.setVisibilityFilter(ITEM_FILTER)}>Select Items</button>
         <button onClick={this.saveBuild}>Save</button>
-        <button onClick={this.clearBuild}>Clear all</button>
+        <button onClick={this.clearBuild}>Clear Build</button>
+        <button onClick={this.removeAllBuilds}>Remove all</button>
       </div>
     )
   }
@@ -44,7 +52,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     setVisibilityFilter,
     saveBuild,
-    clearCurrentBuild
+    clearCurrentBuild,
+    removeAllBuilds
    }, dispatch);
 }
 

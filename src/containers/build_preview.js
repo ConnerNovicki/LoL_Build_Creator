@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { removeItemFromCurrentBuild } from '../actions/index';
+import '../../style/build_preview.css';
 
 class BuildPreview extends Component {
 
@@ -18,7 +19,10 @@ class BuildPreview extends Component {
     const name = champ.name;
     const url = champ.imgUrl;
     return (
-      <img src={url} alt={name} />
+      <img
+        src={url}
+        alt={name}
+        className="champ-img" />
     )
   }
 
@@ -37,7 +41,7 @@ class BuildPreview extends Component {
 
   render() {
     return (
-      <div>
+      <div className="preview-div">
         {this.renderChamp()}
         {this.props.currentBuildItems.map(this.renderItem)}
       </div>
