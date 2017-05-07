@@ -1,3 +1,13 @@
 .item-div {
   display: inline-block;
 }
+
+.table-div {
+  text-align: center;
+  font-family: cursive;
+  
+}
+
+.table-headers {
+  font-size: 30px;
+}

@@ -30,9 +30,11 @@ class BuildList extends Component {
 
     return (
       <div>
+
+      <div className="table-div">
         <h1>Saved Builds:</h1>
-        <table className="table table-hover">
-          <thead>
+        <table className="table table-hover col-md-8">
+          <thead className="table-headers">
             <tr>
               <td>Chamion</td>
               <td>Items</td>
@@ -42,6 +44,7 @@ class BuildList extends Component {
             {this.props.builds.map(this.renderBuild)}
           </tbody>
         </table>
+      </div>
       </div>
     );
   }

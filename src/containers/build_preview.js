@@ -35,6 +35,7 @@ class BuildPreview extends Component {
         src={url}
         alt={name}
         key={key}
+        className="item-img"
         onClick={() => this.props.removeItemFromCurrentBuild(index)}/>
     )
   }

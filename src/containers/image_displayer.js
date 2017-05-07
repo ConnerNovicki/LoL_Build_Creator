@@ -23,7 +23,11 @@ class ImageDisplayer extends Component {
 
     return (
       <div key={key} className="data-div">
-        <img src={imgURL} alt={name} className="data-img" onClick={imageSelectFunc}/>
+        <img
+          src={imgURL}
+          alt={name}
+          className="data-img"
+          onClick={imageSelectFunc} />
       </div>
     );
   }

@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { setVisibilityFilter, saveBuild, clearCurrentBuild, removeAllBuilds } from '../actions/index';
 import { CHAMPION_FILTER, ITEM_FILTER, NO_FILTER } from '../actions/visibility_filters';
 
+import '../../style/filter_selector.css';
+
 class FilterSelector extends Component {
   constructor(props) {
     super(props);
@@ -33,12 +35,16 @@ class FilterSelector extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={() => this.props.setVisibilityFilter(CHAMPION_FILTER)}>Select Champ</button>
-        <button onClick={() => this.props.setVisibilityFilter(ITEM_FILTER)}>Select Items</button>
-        <button onClick={this.saveBuild}>Save</button>
-        <button onClick={this.clearBuild}>Clear Build</button>
-        <button onClick={this.removeAllBuilds}>Remove all</button>
+      <div className="btn-outer-div">
+        <div className="btn-group left-button-group">
+          <button type="button" className="btn btn-primary" onClick={() => this.props.setVisibilityFilter(CHAMPION_FILTER)}>Select Champ</button>
+          <button type="button" className="btn btn-primary" onClick={() => this.props.setVisibilityFilter(ITEM_FILTER)}>Select Items</button>
+        </div>
+        <div className="right-button-group">
+          <button type="button" className="btn btn-success" onClick={this.saveBuild}>Save</button>
+          <button type="button" className="btn btn-success" onClick={this.clearBuild}>Clear Build</button>
+          <button type="button" className="btn btn-success" onClick={this.removeAllBuilds}>Remove all</button>
+        </div>
       </div>
     )
   }
